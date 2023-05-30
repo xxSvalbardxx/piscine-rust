@@ -18,9 +18,20 @@ pub fn delete_and_backspace(s: &mut String) {
             if j < s.len() {
                 s.remove(j);
             }
+        
         } else {
             j -= 1;
         }
+    }
+    while s.chars().nth(0) == Some('+') {
+        if s.len() == 1 {
+            s.remove(0);
+            break;
+        }else {
+            s.remove(0);
+            s.remove(0);
+        }
+
     }
 }
 
