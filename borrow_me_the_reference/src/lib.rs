@@ -13,7 +13,7 @@ pub fn delete_and_backspace(s: &mut String) {
     }
     let mut j = s.len()-1; 
     while j > 0 {
-        if s.chars().nth(j+1).unwrap() == '+' {
+        if s.chars().nth(j) == Some('+') { // Some is an Option variant wich contains a value
             s.remove(j);
             if j < s.len() {
                 s.remove(j);
