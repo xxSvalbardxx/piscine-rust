@@ -1,6 +1,5 @@
 
 pub fn tic_tac_toe(table: Vec<Vec<&str>>) -> String {
-
     if horizontal("X", &table) || vertical("X", &table) || diagonals("X", &table) {
         return "player X won".to_string();
     } else if horizontal("O", &table) || vertical("O", &table) || diagonals("O", &table) {
