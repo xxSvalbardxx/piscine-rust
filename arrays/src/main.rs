@@ -7,9 +7,9 @@ fn main() {
     
 
 	
-    println!("The Sum of the elements in {:?} = {}", a, sum(a));//missing info here
-    println!("The Sum of the elements in {:?} = {}", a1, sum(a1.to_vec()));//missing info here
-	println!("The Sum of the elements in {:?} = {}", b, sum(b));//missing info here
+    println!("The Sum of the elements in {:?} = {}", a, sum(&a));//missing info here
+    println!("The Sum of the elements in {:?} = {}", a1, sum(&a1));//missing info here
+	println!("The Sum of the elements in {:?} = {}", b, sum(&b));//missing info here
 	println!(
 		"Array size {} with only 10's in it {:?}",
 		thirtytwo_tens().len(),
