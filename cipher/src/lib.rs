@@ -13,7 +13,7 @@ impl CipherError {
     }
 }
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
-    if (original.len() != ciphered.len()) {
+    if  original.len() == 0 || ciphered.len() == 0 {
         return None;
     }
         let mut cipher_test = String::new();
