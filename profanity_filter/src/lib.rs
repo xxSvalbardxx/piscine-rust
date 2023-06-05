@@ -5,21 +5,25 @@ pub struct Message {
 
 impl Message {
   pub fn new(ms: String, u: String) -> Message {
-    Message { content: ms,user: u }
+    Message {
+        content: ms,
+        user: u,
+    }
   }
-  pub fn send_ms(&self) -> Option<&str> {
-    if self.content.len() == 0 || self.content == "stupid" {
-      None
+
+pub fn send_ms(&self) -> Option<&str> {
+    if self.content.len() == 0 || self.content.contains("stupid") {
+      return None;
     } else {
-      Some(&self.content)
+      return Some(&self.content);
     }
   }
 }
 
 pub fn check_ms(ms: &Message) -> (bool, &str) {
     match ms.send_ms() {
-        Some(ms) => (true, ms),
+        Some(ms) => (true, ""),
         None => (false, "ERROR : illegal"),
     }
-
 }
+
