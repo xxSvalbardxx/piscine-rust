@@ -5,7 +5,7 @@ pub struct Message {
 
 impl Message {
   pub fn new(ms: String, u: String) -> Message {
-    Message { ms, u }
+    Message { content: ms,user: u }
   }
   pub fn send_ms(&self) -> Option<&str> {
     if self.content.len() == 0 || self.content == "stupid" {
