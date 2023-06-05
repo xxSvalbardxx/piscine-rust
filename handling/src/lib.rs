@@ -1,8 +1,8 @@
 use std::fs::File;
+use std::io::Write;
 
 pub fn open_or_create(file: &str, content: &str) {
-    File::open(file).unwrap_or_else(|_| {
-        File::create(file).unwrap();
-        File::open(file).unwrap()
-    });
+    let mut f = File::create(file).expect("Unable to create file");
+    f.write_all(content.as_bytes()).expect("Unable to write data");
 }
+        
