@@ -14,8 +14,10 @@ pub fn fetch_data(server: Result<String, String>, security_level: Security) -> S
         Security::Low => return server.unwrap_or("Not found: ".to_string() + &err),
         _ => server.to_string(),
     })
-    server = match security_level {
-        Security::BlockServer => return server.unwrap_err(),
-        _ => server.to_string(),
-    };
+    match server {
+        Ok(e) => match security_level {
+            Security::BlockServer => e.unwrap_err(),
+            _ => e.to_string(),
+        },
+    }
 }
