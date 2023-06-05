@@ -13,8 +13,9 @@ impl CipherError {
     }
 }
 pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError>> {
-    if (original != "" || ciphered != "")|| (original != "" && ciphered != ""){
-        
+    if (original.len() != ciphered.len()) || (original.len() == 0) && (ciphered.len() == 0) {
+        return None;
+    }
         let mut cipher_test = String::new();
 
         for c in original.chars() {
@@ -37,6 +38,5 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
         } else {
             return Some(Err(CipherError::new(false, cipher_test.to_string())));
         }
-    }
-    return None;
+    
 }
