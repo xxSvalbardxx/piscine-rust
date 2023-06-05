@@ -6,18 +6,21 @@ pub enum Security {
 	BlockServer,
 }
 
+
 pub fn fetch_data(server: Result<String, String>, security_level: Security) -> String {
-    server.clone().unwrap_or_else(|err| match security_level {
-        Security::Unknown => return server.unwrap(),
-        Security::High => return  server.unwrap_or("ERROR: program stops".to_string()),
-        Security::Medium => return server.unwrap_or("WARNING: check the server".to_string()),        
-        Security::Low => return server.unwrap_or("Not found: ".to_string() + &err),
-        _ => server.to_string(),
-    })
-    match server {
-        Ok(e) => match security_level {
-            Security::BlockServer => e.unwrap_err().to_string(),
-            _ => e.to_string(),
+    match &server {
+        Err(e) => match security_level {
+            Security::Unknown => server.unwrap(),
+            Security::High => panic!("ERROR: program stops"),
+            Security::Medium => return "WARNING: check the server".to_string(),
+            Security::Low => return "Not found: ".to_string()+&e.to_string(),
+            Security::BlockServer => server.unwrap(),
+                _ => e.to_string(),
         },
+        Ok(f) => match security_level {
+            Security::BlockServer => server.unwrap_err(),
+                _ => f.to_string(),
+        }
+        ,
     }
 }
