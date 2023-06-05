@@ -12,10 +12,10 @@ pub fn fetch_data(server: Result<String, String>, security_level: Security) -> S
         Security::High => return  server.unwrap_or("ERROR: program stops".to_string()),
         Security::Medium => return server.unwrap_or("WARNING: check the server".to_string()),        
         Security::Low => return server.unwrap_or("Not found: ".to_string() + &err),
-        _ => server,
+        _ => server.to_string(),
     })
     server = match security_level {
-        Security::BlockServer => panic!("malicious_server.com"),
-        _ => server,
+        Security::BlockServer => return server.unwrap_err(),
+        _ => server.to_string(),
     };
 }
