@@ -16,7 +16,7 @@ pub fn fetch_data(server: Result<String, String>, security_level: Security) -> S
     })
     match server {
         Ok(e) => match security_level {
-            Security::BlockServer => e.unwrap_err(),
+            Security::BlockServer => e.unwrap_err().to_string(),
             _ => e.to_string(),
         },
     }
