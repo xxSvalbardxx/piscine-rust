@@ -54,7 +54,7 @@ impl Form {
         }
         if self.password.len() < 8 {
             return Err(FormError::new(String::from("password"), self.password.clone(), String::from("At least 8 characters")));
-        } else if self.password.chars().all(char::is_alphanumeric || char::is_ascii_punctuation) {
+        } else if self.password.chars().all(char::is_alphanumeric && char::is_ascii_punctuation) {
             return Err(FormError::new(String::from("password"), self.password.clone(), String::from("Combination of different ASCII character types (numbers, letters and none alphanumeric characters)")));
         } else {
             v.push("Valid password");
