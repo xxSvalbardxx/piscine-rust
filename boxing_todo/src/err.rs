@@ -13,7 +13,7 @@ pub enum ParseErr {
 impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
        //unimplemented!();
-       return write!(f, "{}", self.to_string());
+       return write!(f, "Failed to parses todo");
     }
 }
 
@@ -27,7 +27,7 @@ pub struct ReadErr {
 // required by error trait
 impl Display for ReadErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        return write!(f, "{}", self.child_err.to_string());
+        return write!(f, "Failed to parse todo");
     }
 }
 
@@ -36,7 +36,7 @@ impl Error for ParseErr {
         //unimplemented!();
         match self {
             ParseErr::Empty => None,
-            ParseErr::Malformed(e) => Some(e.as_ref()),
+            ParseErr::Malformed(_e) => Some(self),
         }
     }
 }
