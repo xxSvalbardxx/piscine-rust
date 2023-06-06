@@ -55,11 +55,20 @@ impl Form {
         if self.password.len() < 8 {
             return Err(FormError::new(String::from("password"), self.password.clone(), String::from("At least 8 characters")));
             // else if self.password contains at least one number, one letter and one none alphanumeric character
-        } else if self.password.chars().all(char::is_numeric) {
-            return Err(FormError::new(String::from("password"), self.password.clone(), String::from("Combination of different ASCII character types (numbers, letters and none alphanumeric characters)")));
-        } else if self.password.chars().all(char::is_alphabetic) {
-            return Err(FormError::new(String::from("password"), self.password.clone(), String::from("Combination of different ASCII character types (numbers, letters and none alphanumeric characters)")));
-        } else if self.password.chars().all(char::is_ascii_punctuation) {
+        }
+        for c in self.password.chars() {
+            let mut is_number = false;
+            let mut is_letter = false;
+            let mut is_none_alphanumeric = false;
+            if c.is_numeric() {
+                is_number = true;
+            } else if c.is_alphabetic() {
+                is_letter = true;
+            } else if !c.is_alphanumeric() {
+                is_none_alphanumeric = true;
+            }
+        }
+        if !is_number || !is_letter || !is_none_alphanumeric {
             return Err(FormError::new(String::from("password"), self.password.clone(), String::from("Combination of different ASCII character types (numbers, letters and none alphanumeric characters)")));
         } else {
             v.push("Valid password");
