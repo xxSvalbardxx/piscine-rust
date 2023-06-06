@@ -56,10 +56,10 @@ impl Form {
             return Err(FormError::new(String::from("password"), self.password.clone(), String::from("At least 8 characters")));
             // else if self.password contains at least one number, one letter and one none alphanumeric character
         }
+        let mut is_number = false;
+        let mut is_letter = false;
+        let mut is_none_alphanumeric = false;
         for c in self.password.chars() {
-            let mut is_number = false;
-            let mut is_letter = false;
-            let mut is_none_alphanumeric = false;
             if c.is_numeric() {
                 is_number = true;
             } else if c.is_alphabetic() {
