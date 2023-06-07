@@ -1,4 +1,4 @@
-use chrono::Weekday as wd;
+pub use chrono::Weekday as wd;
 use chrono::NaiveDate;
 use chrono::Datelike;
 
