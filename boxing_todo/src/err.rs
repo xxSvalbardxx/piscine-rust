@@ -13,7 +13,7 @@ pub enum ParseErr {
 impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         //unimplemented!();
-        return write!(f, "Failed to parses todo");
+        return write!(f, "Fail to parses todo");
     }
 }
 
