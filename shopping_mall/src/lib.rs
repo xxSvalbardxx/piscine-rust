@@ -57,13 +57,11 @@ pub fn nbr_of_employees(m : Mall) -> usize {
 pub fn check_for_securities( m : &mut Mall , mut guards : Vec<Guard>) {
     println!("old nbr {:?}", m.guards.len());
     println!("guards {:?}", guards.len());
+    println!("--------------------------------");
 
     let mut size = 0;
     for floor in &m.floors {
-        for store in &floor.stores {
-            size += &store.square_meters;
-        }
-        
+        size += floor.size_limit;
     }
     println!("size {:?}", size);
     let mut nbr_needed = size / 200;
@@ -73,24 +71,26 @@ pub fn check_for_securities( m : &mut Mall , mut guards : Vec<Guard>) {
     println!("nbr_needed {:?}", nbr_needed);
 
     let guard_missing = nbr_needed - m.guards.len() as u64;
-
+   
     for _needed in 0..guard_missing {
         
         m.guards.push(guards[0].clone());
         // remove the guard from the list of guards
         guards.remove(0);
 
+
     }
-    //println!("guards: {:?}", guards);
+    println!("--------------------------------");
     println!("new nbr {:?}", m.guards.len());
-    println!("guards names {:?}", m.guards); 
+    println!("guards: {:?}", guards.len());
+    //println!("guards names {:?}", m.guards);
+
 }
 
 
 pub fn cut_or_raise( m : &mut Mall) {
-    let new_mall = m.clone();
-
-    for floor in new_mall.floors {
+    
+    for floor in m.floors {
         for store in floor.stores {
             for  mut employee in store.employees {
                 if employee.working_hours.1 - employee.working_hours.0 > 10 {
