@@ -1,5 +1,5 @@
 
-
+#[derive(PartialEq)]
 pub enum GeometricalShapes {
 	Square,
 	Circle,
@@ -7,6 +7,7 @@ pub enum GeometricalShapes {
 	Triangle,
 }
 
+#[derive(PartialEq)]
 pub enum GeometricalVolumes {
 	Cube,
 	Sphere,
