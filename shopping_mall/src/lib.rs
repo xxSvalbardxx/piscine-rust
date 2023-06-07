@@ -88,7 +88,7 @@ pub fn check_for_securities( m : &mut Mall , mut guards : Vec<Guard>) {
 
 
 pub fn cut_or_raise( m : &mut Mall) {
-    let mut new_mall = m.clone();
+    let new_mall = m.clone();
 
     for floor in new_mall.floors {
         for store in floor.stores {
