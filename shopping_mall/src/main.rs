@@ -72,7 +72,7 @@ fn main() {
 
     let mut mall_la_vie = mall::Mall::new("La Vie Funchal", secs, floors);
 
-/*     //returns the biggest store
+    //returns the biggest store
     println!("Biggest store: {:#?}",biggest_store(mall_la_vie.clone()));
 
     //returns the list with the highest paid employees
@@ -97,7 +97,7 @@ fn main() {
             mall::guard::Guard::new("Ray Storey", 37, 12),
         ],
     );
-*/
+
      //raises or cuts the salary  of every employee
     cut_or_raise(&mut mall_la_vie);
 

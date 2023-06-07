@@ -89,16 +89,37 @@ pub fn check_for_securities( m : &mut Mall , mut guards : Vec<Guard>) {
 
 
 pub fn cut_or_raise( m : &mut Mall) {
-    
-    for floor in m.floors {
-        for store in floor.stores {
-            for  mut employee in store.employees {
+    // I have to use raise and cut methods from employee
+
+    for floor in &mut m.floors {
+        for store in &mut floor.stores {
+            for  employee in &mut store.employees {
                 if employee.working_hours.1 - employee.working_hours.0 > 10 {
-                    employee.salary += &employee.salary * 0.1;
+                    let amount = employee.salary * 0.1;
+                    employee.raise(amount); // REGARDER LES SETTERS ET LES GETTERS
                 } else if employee.working_hours.1 - employee.working_hours.0 < 10 {
-                    employee.salary -= &employee.salary * 0.1;
+                    let amount = employee.salary * 0.1;
+                    employee.cut(amount);
                 }
             }
         }
     }
+    
 }
+
+
+/* 
+
+    for floor in &m.floors {
+        for store in &floor.stores {
+            for  mut employee in &store.employees {
+                if &employee.working_hours.1 - &employee.working_hours.0 > 10 {
+                    let amount = employee.salary * 0.1;
+                    &employee.raise(amount.round() as f64);
+                } else if employee.working_hours.1 - employee.working_hours.0 < 10 {
+                    let amount = employee.salary * 0.1;
+                    &employee.cut(amount.round() as f64);
+                }
+            }
+        }
+    } */
