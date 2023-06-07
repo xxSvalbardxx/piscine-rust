@@ -20,36 +20,31 @@ pub struct TodoList {
 impl TodoList {
     pub fn get_todo(path: &str) -> Result<TodoList, Box<dyn Error>> {
         let file = std::fs::read_to_string(path);
-
+        
         match file {
             Ok(file) => {
                 let json = parse(&file);
+                
                 match json {
                     Ok(json) => {
                         let title = json["title"].as_str().unwrap().to_string();
                         let mut tasks = Vec::new();
-
-                        for task in json["tasks"].members() {
-                            let id = task["id"].as_u32().unwrap();
-                            let description = task["description"].as_str().unwrap().to_string();
-                            let level = task["level"].as_u32().unwrap();
-                            tasks.push(Task {
-                                id,
-                                description,
-                                level,
-                            });
+                        if json["tasks"].members().len() == 0 {
+                            Err(Box::new(ParseErr::Empty))
+                        } else {
+                            for task in json["tasks"].members() {
+                                let id = task["id"].as_u32().unwrap();
+                                let description = task["description"].as_str().unwrap().to_string();
+                                let level = task["level"].as_u32().unwrap();
+                                tasks.push(Task { id, description, level });
+                            }
+                            Ok(TodoList { title, tasks })
                         }
-                        if tasks.is_empty() {
-                            return Err(Box::new(ParseErr::Empty));
-                        }
-                        Ok(TodoList { title, tasks })
                     }
                     Err(e) => Err(Box::new(ParseErr::Malformed(Box::new(e)))),
                 }
             }
-            Err(e) => Err(Box::new(ReadErr {
-                child_err: Box::new(e),
-            })),
+            Err(e) => Err(Box::new(ReadErr { child_err: Box::new(e) })),
         }
     }
 }
