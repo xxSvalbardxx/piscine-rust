@@ -1,6 +1,6 @@
+use std::error::Error;
 use std::fmt;
 use std::fmt::Display;
-use std::error::Error;
 
 #[derive(Debug)]
 pub enum ParseErr {
@@ -12,11 +12,10 @@ pub enum ParseErr {
 // required by error trait
 impl Display for ParseErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-       //unimplemented!();
-       return write!(f, "Failed to parses todo");
+        //unimplemented!();
+        return write!(f, "Failed to parses todo ");
     }
 }
-
 
 #[derive(Debug)]
 pub struct ReadErr {
@@ -27,7 +26,7 @@ pub struct ReadErr {
 // required by error trait
 impl Display for ReadErr {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        return write!(f, "Failed to parse todo");
+        return write!(f, "Fail to read todo file ");
     }
 }
 
