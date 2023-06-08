@@ -1,3 +1,3 @@
 mod mobs;
-pub use mobs::Mobs;
+pub use mobs::*;
 
