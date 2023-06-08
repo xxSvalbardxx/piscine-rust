@@ -18,8 +18,8 @@ impl Mob {
     }
 
     pub fn attack(&mut self,mut mob: Mob) {
-        atk_score: u32;
-        def_score: u32;
+        let atk_score: u32;
+        let def_score: u32;
 
         for member in self.members.iter_mut() {
             if member.role == Role::Underboss {
@@ -47,7 +47,9 @@ impl Mob {
             mob.members.pop();
             if mob.members.len() == 0 {
                 self.wealth += mob.wealth;
-                self.cities.push(mob.cities);
+                for city in mob.cities.iter_mut() {
+                    self.cities.push(city);
+                }
                 mob.wealth = 0;
                 mob.cities = Vec::new();
             }
@@ -55,7 +57,9 @@ impl Mob {
             self.members.pop();
             if self.members.len() == 0 {
                 mob.wealth += self.wealth;
-                mob.cities.push(self.cities);
+                for city in self.cities.iter_mut() {
+                    mob.cities.push(city);
+                }
                 self.wealth = 0;
                 self.cities = Vec::new();
             }
@@ -72,10 +76,10 @@ impl Mob {
 
     pub fn conquer_city(&mut self, mut mobs: Vec<Mob>, city: String, value: u8) {
         for mob in mobs.iter_mut() {
-            if mob.cities.contains(&city) {
-                mob.cities.remove(city);
-                self.cities.push(city);
-                self.wealth += value;
+            if mob.cities.contains(&city, &value) {
+                mob.cities.remove(city , value);
+                self.cities.push(city , value);
+                
             }
         }
     }
