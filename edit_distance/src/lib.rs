@@ -1,13 +1,13 @@
 
 pub fn edit_distance(source: &str, target: &str) -> usize {
-    let mut result : usize =0;
+    let mut result : usize;
     if source.len() > target.len() {
         result = source.len() - target.len();
     } else {
         result = target.len() - source.len();
     }
     if target.len() >= 10 {
-        result += (source.len()/2);
+        result += source.len()/2;
     }
     let mut index_source : usize = 0;
     let mut index_target : usize = 0;
@@ -24,7 +24,7 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
             if !finded {
                 index_target +=1;
                 result +=1;
-                finded = false;
+                
             }
         }
         index_source += 1;

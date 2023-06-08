@@ -42,8 +42,8 @@ pub fn vertical(player: &str, table: &Vec<Vec<&str>>) -> bool {
 
 #[cfg(test)]
 mod tests {
-    use tic_tac_toe::*;
-
+    use super::*;
+#[test]
 fn main() {
     println!(
         "{:?}",

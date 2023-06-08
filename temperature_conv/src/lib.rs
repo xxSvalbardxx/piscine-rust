@@ -10,7 +10,7 @@ pub fn celsius_to_fahrenheit(c: f64) -> f64 {
 
 #[cfg(test)]
 mod tests {
-    use temperature_conv::*;
+    use super::*;
     #[test]
     fn main() {
         println!("{} F = {} C", -459.67, fahrenheit_to_celsius(-459.67));

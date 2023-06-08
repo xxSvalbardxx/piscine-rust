@@ -77,8 +77,6 @@ pub fn check_for_securities( m : &mut Mall , mut guards : Vec<Guard>) {
         m.guards.push(guards[0].clone());
         // remove the guard from the list of guards
         guards.remove(0);
-
-
     }
     println!("--------------------------------");
     println!("new nbr {:?}", m.guards.len());

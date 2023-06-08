@@ -15,7 +15,7 @@ pub fn fetch_data(server: Result<String, String>, security_level: Security) -> S
             Security::Medium => return "WARNING: check the server".to_string(),
             Security::Low => return "Not found: ".to_string()+&e.to_string(),
             Security::BlockServer => server.unwrap(),
-                _ => e.to_string(),
+        
         },
         Ok(f) => match security_level {
             Security::BlockServer => server.unwrap_err(),

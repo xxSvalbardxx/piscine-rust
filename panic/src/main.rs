@@ -12,5 +12,5 @@ fn main() {
     fs::remove_file(filename).unwrap();
 
     //It must panic
-    let b = open_file(filename);
+    let _b = open_file(filename);
 }
