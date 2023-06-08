@@ -1,3 +1,8 @@
+
+mod mobs;
+pub use mobs::*;
+
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct Mob {
     name: String,

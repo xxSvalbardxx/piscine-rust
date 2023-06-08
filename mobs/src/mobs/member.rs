@@ -1,3 +1,5 @@
+use mobs::*;
+
 #[derive(Debug, Clone, PartialEq)]
 pub enum Role {
     Underboss,

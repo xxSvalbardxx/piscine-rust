@@ -1,4 +1,4 @@
-
+use mobs::*;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Boss {
