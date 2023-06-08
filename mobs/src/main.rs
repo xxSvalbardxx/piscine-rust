@@ -1,3 +1,4 @@
+mod mobs;
 use mobs::*;
 
 fn main() {

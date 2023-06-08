@@ -1,4 +1,3 @@
-use mobs::*;
 pub mod member {
     #[derive(Debug, Clone, PartialEq)]
     pub enum Role {
