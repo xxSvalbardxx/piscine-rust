@@ -79,9 +79,9 @@ impl Mob {
 
     pub fn conquer_city(&mut self, mut mobs: Vec<Mob>, city: String, value: u8) {
         for mob in mobs.iter_mut() {
-            if mob.cities.contains(&city, &value) {
-                mob.cities.remove(city , value);
-                self.cities.push(city , value);
+            if mob.cities.contains(&city) {
+                mob.cities.remove((city , value));
+                self.cities.push((city , value));
                 
             }
         }
