@@ -1,6 +1,8 @@
 
 mod mobs;
 pub use mobs::*;
+pub use mobs::member::*;
+pub use mobs::boss::*;
 
 
 #[derive(Debug, Clone, PartialEq)]
