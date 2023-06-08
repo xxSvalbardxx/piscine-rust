@@ -3,7 +3,7 @@ pub struct Mob {
     name: String,
     boss: Boss,
     members: Vec<Member>,
-    cities: Vec<(&str, u8)>,
+    cities: Vec<(String, u8)>,
     wealth: u32,
 }
 
