@@ -19,7 +19,7 @@ impl Mob {
         self.members.push(Member::new(name ,Role::Associate , age))
     }
 
-    pub fn attack(&mut self,mut mob: Mob) {
+    pub fn attack(&mut self, mob: Mob) {
         let mut atk_score: u32 = 0;
         let mut def_score: u32 = 0;
 
