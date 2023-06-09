@@ -8,11 +8,11 @@ pub use member::*;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Mob {
-    name: String,
-    boss: Boss,
-    members: Vec<Member>,
-    cities: Vec<(String, u8)>,
-    wealth: u32,
+    pub name: String,
+    pub boss: Boss,
+    pub members: Vec<Member>,
+    pub cities: Vec<(String, u8)>,
+    pub wealth: u32,
 }
 
 impl Mob {
