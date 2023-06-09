@@ -56,7 +56,7 @@ impl Mob {
         } 
     }
 
-    pub fn steal(&mut self,&mut mob: Mob, mut value: u32) {
+    pub fn steal(&mut self, mob:&mut Mob, mut value: u32) {
         if mob.wealth <= value {
             value = mob.wealth;
         }
