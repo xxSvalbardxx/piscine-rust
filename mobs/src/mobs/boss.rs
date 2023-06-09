@@ -1,4 +1,4 @@
-
+pub mod boss {
     #[derive(Debug, Clone, PartialEq)]
     pub struct Boss {
         name: String,
@@ -13,4 +13,4 @@
             }
         }
     }
-
+}
