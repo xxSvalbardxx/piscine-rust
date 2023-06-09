@@ -14,7 +14,6 @@ pub struct Mob {
     pub cities: Vec<(String, u8)>,
     pub wealth: u32,
 }
-
 impl Mob {
     pub fn recruit(&mut self, name: &str, age: u8) {
         self.members.push(Member::new(name ,Role::Associate , age))
@@ -57,7 +56,7 @@ impl Mob {
         } 
     }
 
-    pub fn steal(&mut self,mut mob: Mob, mut value: u32) {
+    pub fn steal(&mut self,&mut mob: Mob, mut value: u32) {
         if mob.wealth <= value {
             value = mob.wealth;
         }
