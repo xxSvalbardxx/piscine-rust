@@ -4,8 +4,8 @@ pub struct Person<'a> { // <'a> is a lifetime annotation that says the struct ca
 	pub age: u8,
 }
 
-impl Person<'_> {
-	pub fn new(name: &str) -> Person{
+impl<'a> Person<'a> {
+	pub fn new(name: &'a str) -> Person<'a>{
 		Person {
 			name: name,
 			age: 0,
