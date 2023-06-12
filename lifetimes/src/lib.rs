@@ -4,8 +4,8 @@ pub struct Person<'a> {
 	pub age: u8,
 }
 
-impl Person <'_>{
-	pub fn new(name: &'static str) -> Person{
+impl Person<'_> {
+	pub fn new<'a>(name: &'a str) -> Person<'a>{
 		Person {
 			name: name,
 			age: 0,
