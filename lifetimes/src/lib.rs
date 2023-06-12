@@ -7,7 +7,7 @@ pub struct Person<'a> { // <'a> is a lifetime annotation that says the struct ca
 impl<'a> Person<'a> {
 	pub fn new(name: &'a str) -> Person{
 		Person {
-			name: name,
+			name: &name,
 			age: 0,
 		}
 	}
