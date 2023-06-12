@@ -1,14 +1,10 @@
-#[derive(Debug)]
-pub struct Person<'a> { // <'a> is a lifetime annotation that says the struct cannot outlive the reference it holds
-	pub name: &'a str, // &str is a reference to a string slice (a string literal) that cannot be mutated (immutable)
-	pub age: u8,
+pub struct Person<'a> {
+    pub name: &'a str,
+    pub age: u8,
 }
 
 impl Person<'_> {
-	pub fn new<'a>(name: &'a str) -> Person{
-		Person {
-			name: name,
-			age: 0,
-		}
-	}
+    pub fn new<'a>(name: &'a str) -> Person {
+        Person { name: name, age: 0 }
+    }
 }
