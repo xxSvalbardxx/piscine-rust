@@ -14,14 +14,14 @@ impl <T: Scalar<Item = T>> Matrix<T> {
 
 	pub fn zero(row: usize, col: usize) -> Matrix<T> {
         // filled by only zeros
-		Matrix(vec![vec![T::zero(); row]; col])
+		Matrix(vec![vec![T::zero(); col]; row])
         
 	}
 
 	pub fn identity(n: usize) -> Matrix<T> {
 		// declare an identity matrix. wich is a square matrix with 1s on the main diagonal and 0s elsewhere
 		let mut m = Matrix::zero(n, n);
-		for i in 0..=n {
+		for i in 0..n {
 			m.0[i][i] = T::one(); // m.0 means that we are accessing the first element of the tuple.
 		}
 		m
