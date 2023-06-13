@@ -27,24 +27,24 @@ impl<T: Clone> Matrix<T> {
     }
 }
 
-impl<T: Clone + std::ops::Mul<Output = T>> Mul for Matrix<T> {
+impl<T: Clone + std::ops::Mul<Output = T> + std::ops::Add<Output = T>> Mul for Matrix<T> {
     type Output = Option<Matrix<T>>;
 
     fn mul(self, other: Matrix<T>) -> Option<Matrix<T>> {
-        if self.number_of_cols() != other.number_of_cols()
-            || self.number_of_rows() != other.number_of_rows()
-            || self.number_of_cols() != self.number_of_rows()
-        {
+        if self.number_of_cols() != other.number_of_rows() {
             return None;
         }
+        // without using the sum crate
+        
         let mut result = Vec::new();
-
         for i in 0..self.number_of_rows() {
             let mut row = Vec::new();
-
-            for j in 0..self.number_of_cols() {
-                let prod = self.0[i][j].clone() * other.0[i][j].clone();
-                row.push(prod);
+            for j in 0..other.number_of_cols() {
+                let mut sum = self.0[i][0].clone() * other.0[0][j].clone();
+                for k in 1..self.number_of_cols() {
+                    sum = sum + self.0[i][k].clone() * other.0[k][j].clone();
+                }
+                row.push(sum);
             }
             result.push(row);
         }
