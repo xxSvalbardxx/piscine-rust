@@ -1,9 +1,11 @@
+
 pub trait Scalar:
-    std::ops::Add<Output = Self>
-    + std::ops::Sub<Output = Self>
-    + std::ops::Mul<Output = Self>
-    + std::ops::Div<Output = Self>
-    + Sized
+std::ops::Add<Output = Self>
++ std::ops::Sub<Output = Self>
++ std::ops::Mul<Output = Self>
++ std::ops::Div<Output = Self>
++ std::clone::Clone // Clone is a trait that implements the clone() method to indicate that if you clone the current type, you should get the same type back.
++ Sized
 {
     type Item;
     fn zero() -> Self::Item;
