@@ -1,5 +1,5 @@
 fn main() {
-	let vehicles: Vec</*there is something missing here*/Vehicle> = vec![
+	let vehicles: Vec<dyn Vehicle> = vec![
 		&Car {
 			plate_nbr: "A3D5C7",
 			model: "Model 3",
