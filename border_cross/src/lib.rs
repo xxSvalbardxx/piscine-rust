@@ -35,4 +35,9 @@ impl Vehicle for Car<'_> {
 }
 
 fn all_models(list: Vec<&Vehicle>) -> Vec<&str> {
+    let mut models = Vec::new();
+    for vehicle in list {
+        models.push(vehicle.model());
+    }
+    models
 }
