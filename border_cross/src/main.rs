@@ -1,5 +1,8 @@
+use border_cross::all_models;
+use border_cross::{Car, Truck, Vehicle};
+
 fn main() {
-	let vehicles: Vec<dyn Vehicle> = vec![
+	let vehicles: Vec<&dyn Vehicle> = vec![
 		&Car {
 			plate_nbr: "A3D5C7",
 			model: "Model 3",
