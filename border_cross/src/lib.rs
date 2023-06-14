@@ -25,12 +25,20 @@ impl Vehicle for Truck<'_> {
     fn model(&self) -> &str {
         self.model
     }
+    // return the year of the truck
+    fn year(&self) -> u32 {
+        self.year
+    }
 }
 
 impl Vehicle for Car<'_> {
     // return the model of the car
     fn model(&self) -> &str {
         self.model
+    }
+    // return the year of the car
+    fn year(&self) -> u32 {
+        self.year
     }
 }
 
