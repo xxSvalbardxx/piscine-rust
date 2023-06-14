@@ -92,7 +92,7 @@ impl FromStr for BloodType {
 
 impl BloodType {
 	pub fn can_receive_from(&self, other: &BloodType) -> bool {
-        self.antigen == other.antigen || other.antigen == Antigen::O
+        self.donors().contains(other)
     }
 
 	pub fn donors(&self) -> Vec<Self> {
