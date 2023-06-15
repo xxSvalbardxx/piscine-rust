@@ -12,12 +12,7 @@ impl Node {
         self.ref_list.push(element);
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        for i in 0..self.ref_list.len() {
-            if Rc::ptr_eq(&self.ref_list[i], &element) {
-                self.ref_list.retain(|x| !Rc::ptr_eq(x, &element));
-                return;
-            }
-        }
+        self.ref_list.retain(|x| !Rc::ptr_eq(x, &element));
     }
 }
 
