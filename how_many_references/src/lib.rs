@@ -12,7 +12,11 @@ impl Node {
         self.ref_list.push(element);
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        self.ref_list.remove(&element);
+        if Rc::ptr_eq(&self, &element) {
+            self.ref_list.clear();
+        } else {
+            self.ref_list.retain(|x| !Rc::ptr_eq(x, &element));
+        }
     }
 }
 
