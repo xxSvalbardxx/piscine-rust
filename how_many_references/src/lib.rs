@@ -13,6 +13,10 @@ impl Node {
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
         self.ref_list.retain(|x| x != &element); // retain() keeps all elements that satisfy the condition
+        self.ref_list.retain(|x| x == &element); // retain() keeps all elements that satisfy the condition
+        //self.ref_list.shrink_to_fit(); // shrink_to_fit() reduces the capacity to the minimum. the condition is that the reference count is greater than 0
+        //self.ref_list.retain(|x| Rc::strong_count(x) > 0); // retain() keeps all elements that satisfy the condition. the condition is that the reference count is greater than 0
+    
     }
 }
 
