@@ -12,11 +12,7 @@ impl Node {
         self.ref_list.push(element);
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        //println!("ref_list: {:?}", self.ref_list);
-
-        self.ref_list.retain(|x| x != &element); // retain() keeps all elements that satisfy the condition
-        //self.ref_list.retain(|x| x == &element); // retain() keeps all elements that satisfy the condition
-        //println!("ref_list: {:?}", self.ref_list);
+        self.ref_list.rc_remove(&element);
     }
 }
 
