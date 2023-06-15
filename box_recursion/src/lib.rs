@@ -71,7 +71,7 @@ impl WorkEnvironment {
     }
     pub fn last_worker(&self) -> Option<(String, String)> {
         self.grade.as_ref().map(|worker| { // as_ref() is a method of Option<T> that returns an Option<&T>
-            (worker.name.clone(), worker.role.clone())
+                (worker.name.clone(), worker.role.clone())
         })
     }
 }
