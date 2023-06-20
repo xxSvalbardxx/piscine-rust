@@ -7,6 +7,6 @@ pub fn twice<F>(f: F) -> impl Fn(i32) -> i32
 where
     F: Fn(i32) -> i32,
 {
-    move |x| f(x) + f(0)
+    move |x| f(x) + f(0) // f(0) is the same as f() in this case 
 }
 
