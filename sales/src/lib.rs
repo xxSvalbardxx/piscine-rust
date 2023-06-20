@@ -11,7 +11,7 @@ impl Store {
 #[derive(Debug, Clone, PartialEq)]
 pub struct Cart {
     // expected public fields
-    pub items: Vec::<(String, f32)>,
+    pub items: Vec<(String, f32)>,
     pub receipt: Vec<f32>,
 }
 impl Cart {
@@ -19,7 +19,7 @@ impl Cart {
         Cart {
             items: Vec::<(String, f32)>::new(),
             receipt: Vec::<f32>::new(),
-         }
+        }
     }
     pub fn insert_item(&mut self, s: &Store, ele: String) {
         for i in s.products.iter() {
@@ -28,48 +28,32 @@ impl Cart {
             }
         }
         //println!("{:?}", self.items);
-
     }
+
     pub fn generate_receipt(&mut self) -> Vec<f32> {
-        let mut temp = Vec::<f32>::new();
-        let mut min = 0.0;
-        for i in self.items.iter() {
-            //println!("{:?}", i);
-            //println!("{:?}", i.1);
-            if i.1 < min {
-                min = i.1;
-            }
+        let mut res = Vec::<f32>::new();
+        for i in &self.items {
+            res.push(i.1);
         }
-        for i in self.items.iter() {
-            if i.1 != min {
-                temp.push(i.1);
-            }
+        res.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        let third = res.len() / 3;
+        let res_sum: f32 = res.iter().sum(); // somme des elements
+        let mut res_sum2: f32 = 0.0; // somme des elements du tiers
+        for i in 0..third {
+            res_sum2 += res[i]; // somme des elements du tiers
         }
-        temp.sort_by(|a, b| a.partial_cmp(b).unwrap());
-        // the promotion is applied to the cheapest items in three. so if we have 3 items, we remove the first one. but if we have 9 items, we remove the first three.
-        let to_remove = temp.len() / 3;
-        // remove the first element
-        temp.remove(to_remove - 1);
-        let mut rest = 0.0;
-        for i in temp.iter() {
-            // round to two decimal places and push to receipt
-
-            self.receipt.push(((*i * 0.9551)*100.0).round() / 100.0);
-            rest += (*i * (1.0 - 0.9552)*100.0).round() / 100.0 ;
+        for i in 0..res.len() {
+            res[i] = two_decimals(res[i] - res[i] / (res_sum) * res_sum2) // here is an exemple: 1.23 - 1.23 / 27.55 * 7.65
+                .parse::<f32>()
+                .unwrap();
         }
-        // 22.06 % 23.1 * 100 = 95.51
-        // 22.06 % 23.1 = 0.9549180327868852
-        // 2.98 % 3.12 * 100 = 95.51
-        // 2.98 % 3.12 = 0.9549180327868852
-        // 
-
-        // place the first element back
-        temp.insert(0,rest);
-        self.receipt.insert(0, rest);
-        //self.receipt = temp;
-        //println!("{:?}", self.receipt);
-        self.receipt.clone()
+        for i in &res {
+            self.receipt.push(*i);
+        }
+        res
     }
 }
 
-        
+fn two_decimals(fl: f32) -> String {
+    format!("{:.02}", fl)
+}
