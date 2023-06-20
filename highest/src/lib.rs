@@ -4,9 +4,9 @@ pub struct Numbers<'a> {
     numbers: &'a [u32],
 }
 
-impl Numbers {
-    pub fn new(numbers: &'a [u32]) -> Self<'a> {
-        Self { numbers }
+impl<'a> Numbers<'_> {
+    pub fn new(numbers: &'a [u32]) -> Numbers<'a> {
+        Numbers { numbers }
     }
 
     pub fn list(&self) -> &[u32] {
@@ -17,14 +17,14 @@ impl Numbers {
         if self.numbers.is_empty() {
             return None;
         }
-        Some(self.numbers.last().copied());
+        Some(self.numbers.last().copied().unwrap())
     }
 
     pub fn highest(&self) -> Option<u32> {
         if self.numbers.is_empty() {
             return None;
         }
-        Some(self.numbers.iter().max().copied());
+        Some(self.numbers.iter().max().copied().unwrap())
     }
 
     pub fn highest_three(&self) -> Vec<u32> {
