@@ -7,7 +7,7 @@ impl Iterator for Collatz {
     type Item = u64;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.v == 1 {
+        if self.v == 1 || self.v == 0 {
             None
         } else if self.v % 2 == 0 {
             self.v /= 2;
