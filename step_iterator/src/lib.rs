@@ -26,10 +26,10 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<Self::Item> {
-        if self.current <= self.end {
-            let value = self.current;
-            self.current = self.current + self.step;
-            Some(value)
+        if self.current <= self.end { // <= instead of < to include the end value
+            let value = self.current; // Copy the current value
+            self.current = self.current + self.step; // Increment the current value
+            Some(value) // Return the copied value
         } else {
             None
         }
