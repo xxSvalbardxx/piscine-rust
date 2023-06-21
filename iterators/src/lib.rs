@@ -11,10 +11,10 @@ impl Iterator for Collatz {
             None
         } else if self.v % 2 == 0 {
             self.v /= 2;
-            Some(*self)
+            Some(Collatz { v: self.v })
         } else {
             self.v = self.v * 3 + 1;
-            Some(*self)
+            Some(Collatz { v: self.v })
         }
     }
 }
