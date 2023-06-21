@@ -1,16 +1,9 @@
-pub fn slices_to_map(&keys [T], &values [U]) -> HashMap<&T, &U> {
+use std::collections::HashMap;
+
+pub fn slices_to_map<'a, T : std::hash::Hash + std::cmp::Eq, U>(keys: &'a [T],values: &'a [U]) -> HashMap<&'a T, &'a U> {
     let mut map = HashMap::new();
-    
-    if keys.len() != values.len() {
-        // take the shorter of the two slices
-        let len = if keys.len() < values.len() { keys.len() } else { values.len() };
-        for i in 0..len {
-            map.insert(keys[i], values[i]);
-        }
-    } else {
-        for i in 0..keys.len() {
-            map.insert(keys[i], values[i]);
-        }
+    for (key, value) in keys.iter().zip(values.iter()) {
+        map.insert(key, value);
     }
     map
 }
