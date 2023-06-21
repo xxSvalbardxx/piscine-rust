@@ -1,10 +1,12 @@
 pub fn num_to_ordinal(x: u32) -> String {
-    let mut s = String::new();
-    match x {
-        1 => s.push_str(&format!("{}st", x)),
-        2 => s.push_str(&format!("{}nd", x)),
-        3 => s.push_str(&format!("{}rd", x)),
-        _ => s.push_str(&format!("{}th", x)),
-    }
-    s
+    let tens = x % 100;
+    let ones = x % 10;
+    let suffix = match (tens, ones) {
+        (11..=13, _) => "th",
+        (_, 1) => "st",
+        (_, 2) => "nd",
+        (_, 3) => "rd",
+        _ => "th",
+    };
+    format!("{}{}", x, suffix)
 }
