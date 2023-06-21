@@ -9,7 +9,6 @@ use std::ops::Add;
 impl<T> StepIterator<T> {
     pub fn new(beg: T, end: T, step: T) -> Self
     where
-    
         T: Copy + PartialOrd + Add<Output = T>,
     {
         StepIterator {
