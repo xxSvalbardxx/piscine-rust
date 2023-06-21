@@ -1,4 +1,4 @@
-pub fn slices_to_map(&[T], &[U]) -> HashMap<&T, &U> {
+pub fn slices_to_map(&keys [T], &values [U]) -> HashMap<&T, &U> {
     let mut map = HashMap::new();
     
     if keys.len() != values.len() {
