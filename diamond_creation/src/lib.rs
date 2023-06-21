@@ -1,6 +1,6 @@
 pub fn get_diamond(c: char) -> Vec<String> {
     let mut rslt = Vec::new();
-    let n = (c as usize b'A') as usize;
+    let n = (c as u8 - b'A') as usize;
 
     for i in 0..n {
         let mut line : Vec<char> = vec![' '; 2*n+1];
