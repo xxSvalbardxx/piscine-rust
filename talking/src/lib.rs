@@ -2,8 +2,8 @@ pub fn talking(text: &str) -> &str {
     match text {
         _ if text.chars().all(|c| c.is_whitespace())|| text.len() == 0 || text == " " => "Just say something!",
         
-        _ if text.chars().all(|c| c.is_uppercase()) && text.ends_with("?") && text.len() > 0 => "Quiet, I am thinking!",
-        _ if text.chars().all(|c| c.is_uppercase()) && text.ends_with("!") && text.len() > 0 => "There is no need to yell, calm down!",
+        _ if text.chars().all(|c| c.is_uppercase()).pop() && text.ends_with("?") && text.len() > 0 => "Quiet, I am thinking!",
+        _ if text.chars().all(|c| c.is_uppercase()).pop() && text.ends_with("!") && text.len() > 0 => "There is no need to yell, calm down!",
         _ if text.ends_with("?") && text.len() > 0 => "Sure.",
         _ => "Interesting",
     }
