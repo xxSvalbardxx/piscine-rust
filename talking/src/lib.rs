@@ -8,7 +8,7 @@ pub fn talking(text: &str) -> &str {
     } else if text.ends_with("?") && text.len() > 0 {
         return "Sure.";
     } else {
-        return "Interesting.";
+        return "Interesting";
     }
 }
 
