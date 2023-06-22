@@ -1,5 +1,17 @@
 pub fn talking(text: &str) -> &str {
-    if text.len() == 0 || text == " " {
+    match text {
+        "" => "Just say something!",
+        " " => "Just say something!",
+        _ if text.to_uppercase() == text && text.ends_with("?") && text.len() > 0 => "Quiet, I am thinking!",
+        _ if text.to_uppercase() == text && text.ends_with("!") && text.len() > 0 => "There is no need to yell, calm down!",
+        _ if text.ends_with("?") && text.len() > 0 => "Sure.",
+        _ => "Interesting",
+    }
+    
+    
+    
+    
+    /* if text.len() == 0 || text == " " {
         return "Just say something!";
     } else if text.to_uppercase() == text && text.ends_with("?") && text.len() > 0 {
         return "Quiet, I am thinking!";
@@ -9,7 +21,7 @@ pub fn talking(text: &str) -> &str {
         return "Sure.";
     } else {
         return "Interesting";
-    }
+    } */
 }
 
 
