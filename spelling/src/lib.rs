@@ -89,9 +89,9 @@ fn spell_hundreds(n: u64) -> String {
 
     let tens = match n % 100 {
         0 => "".to_string(),
-        1..=9 => format!(" and {}", spell_ones(n % 100)),
-        10..=19 => format!(" and {}", spell_teens(n % 100)),
-        20..=99 => format!(" and {}", spell_tens(n % 100)),
+        1..=9 => format!(" {}", spell_ones(n % 100)),
+        10..=19 => format!(" {}", spell_teens(n % 100)),
+        20..=99 => format!(" {}", spell_tens(n % 100)),
         _ => panic!("Number out of range: {}", n),
     };
 
