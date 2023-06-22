@@ -3,7 +3,7 @@ pub fn score(word: &str) -> u64 {
     let mut total_score: u64 = 0;
     for c in word.chars() {
         let lowercase_char = c.to_lowercase().next().unwrap();
-        let score = match lowercasechar {
+        let score = match lowercase_char {
             'a' | 'e' | 'i' | 'o' | 'u' | 'l' | 'n' | 'r' | 's' | 't' => 1,
             'd' | 'g' => 2,
             'b' | 'c' | 'm' | 'p' => 3,
