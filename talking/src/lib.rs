@@ -18,7 +18,7 @@ pub fn talking(text: &str) -> String {
         res = "Quiet, I am thinking!".to_string();
     } else if lowercase_count == 0 && uppercase_count != 0 {
         res = "There is no need to yell, calm down!".to_string();
-    } else if text.len() > 0 && s.chars().nth(text.len()-1).unwrap() == '?' {
+    } else if text.len() > 0 && text.chars().nth(text.len()-1).unwrap() == '?' {
         res = "Sure.".to_string();
     } else if lowercase_count == 0 && uppercase_count == 0 || text.len() == 0 {
         res = "Just say something!".to_string();
