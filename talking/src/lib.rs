@@ -1,5 +1,5 @@
 pub fn talking(text: &str) -> &str {
-    if text.len() == 0 {
+    if text.len() == 0 || text == " " {
         return "Just say something!";
     } else if text.to_uppercase() == text && text.ends_with("?") && text.len() > 0 {
         return "Quiet, I am thinking!";
