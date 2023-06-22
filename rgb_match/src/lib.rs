@@ -10,7 +10,7 @@ impl Color {
         let r = self.r;
         let g = self.g;
         let b = self.b;
-        let a = se
+        let a = self.a;
         
         match first {
             r => self.r = second,
