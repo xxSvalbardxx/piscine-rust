@@ -11,7 +11,7 @@ pub fn score(word: &str) -> u64 {
             'k' => 5,
             'j' | 'x' => 8,
             'q' | 'z' => 10,
-             => 0, // Handle any other characters that don't have a value
+            _ => 0, // Handle any other characters that don't have a value
         };
         total_score += score;
     }
