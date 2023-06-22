@@ -1,41 +1,32 @@
-pub fn talking(text: &str) -> &str {
-    /* if text.len() == 0 || text == " " {
-        return "Just say something!";
-    } else if text.to_uppercase() == text && text.ends_with("?") && text.len() > 0 {
-        return "Quiet, I am thinking!";
-    } else if text.to_uppercase() == text && text.ends_with("!") && text.len() > 0 {
-        return "There is no need to yell, calm down!";
-    } else if text.ends_with("?") && text.len() > 0 {
-        return "Sure.";
-    } else {
-        return "Interesting";
-    }
-    // remove the last character if it is'nt a letter
-    let text_1 = match text.chars().last() {
-        Some(c) if !c.is_alphabetic() => &text[..text.len()-1],
-        _ => text,
-    };
-    match text {
-        _ if text_1.chars().all(|c| c.is_whitespace())|| text.len() == 0 || text == " " => "Just say something!",
-        _ if text_1.chars().all(|c| c.is_uppercase()) && text.ends_with("?") && text.len() > 0 => "Quiet, I am thinking!",
-        _ if text_1.chars().all(|c| c.is_uppercase()) && text.ends_with("!") && text.len() > 0 => "There is no need to yell, calm down!",
-        _ if text_1.ends_with("?") && text.len() > 0 => "Sure.",
-        _ => "Interesting",
-    } */
-    // it does'nt work with this code so i will do it like this :
 
-    if text.len() == 0 || text == " " {
-        return "Just say something!";
-    } else if text.to_uppercase() == text && text.ends_with("?") && text.len() > 0 {
-        return "Quiet, I am thinking!";
-    } else if text.to_uppercase() == text && text.ends_with("!") && text.len() > 0 {
-        return "There is no need to yell, calm down!";
-    } else if text.ends_with("?") && text.len() > 0 {
-        return "Sure.";
-    } else {
-        return "Interesting";
+pub fn talking(text: &str) -> String {
+    
+    let mut lowercase_count = 0;
+    let mut uppercase_count = 0;
+    let mut res = String::new();
+    for i in s.chars() {
+        lowercase_count += match i {
+            'a'..='z' => 1,
+            _ => 0,
+        };
+        uppercase_count += match i {
+            'A'..='Z' => 1,
+            _ => 0,
+        };
     }
-
+    if lowercase_count == 0 && uppercase_count != 0 && s.chars().nth(s.len()-1).unwrap() == '?' {
+        res = "Quiet, I am thinking!".to_string();
+    } else if lowercase_count == 0 && uppercase_count != 0 {
+        res = "There is no need to yell, calm down!".to_string();
+    } else if s.len() > 0 && s.chars().nth(s.len()-1).unwrap() == '?' {
+        res = "Sure.".to_string();
+    } else if lowercase_count == 0 && uppercase_count == 0 || s.len() == 0 {
+        res = "Just say something!".to_string();
+    } else {
+        res = "Interesting".to_string();
+    }
+    res
 }
+
 
 
