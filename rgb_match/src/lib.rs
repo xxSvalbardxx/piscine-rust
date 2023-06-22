@@ -7,18 +7,23 @@ pub struct Color {
 
 impl Color {
     pub fn swap(mut self, first: u8, second: u8) -> Color {
+        let r = self.r;
+        let g = self.g;
+        let b = self.b;
+        let a = se
+        
         match first {
-            self.r => self.r = second,
-            self.g => self.g = second,
-            self.b => self.b = second,
-            self.a => self.a = second,
+            r => self.r = second,
+            g => self.g = second,
+            b => self.b = second,
+            a => self.a = second,
             _ => panic!("Invalid color value: {}", first),
         }
         match second {
-            self.r => self.r = first,
-            self.g => self.g = first,
-            self.b => self.b = first,
-            self.a => self.a = first,
+            r => self.r = first,
+            g => self.g = first,
+            b => self.b = first,
+            a => self.a = first,
             _ => panic!("Invalid color value: {}", second),
         }
         self
