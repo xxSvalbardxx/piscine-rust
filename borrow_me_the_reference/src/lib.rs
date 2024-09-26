@@ -12,25 +12,17 @@ pub fn delete_and_backspace(s: &mut String) {
             i += 1;
         }
     }
-    let mut j = s.len() - 1;
+    let mut j = s.len();
     while j > 0 {
-        if s.chars().nth(j) == Some('+') {
+        if s.chars().nth(j-1) == Some('+') {
             // Some is an Option variant wich contains a value
-            s.remove(j);
+            s.remove(j-1);
+            j-=1;
             if j < s.len() {
                 s.remove(j);
             }
         } else {
             j -= 1;
-        }
-    }
-    while s.chars().nth(0) == Some('+') {
-        if s.len() == 1 {
-            s.remove(0);
-            break;
-        } else {
-            s.remove(0);
-            s.remove(0);
         }
     }
 }
