@@ -1,90 +1,41 @@
-
 mod areas_volumes;
 pub use areas_volumes::*;
 
-
 pub fn area_fit(
-	x: usize,
-	y: usize,
-	objects: areas_volumes::GeometricalShapes,
-	times: usize,
-	a: usize,
-	b: usize,
+    x: usize,
+    y: usize,
+    objects: GeometricalShapes,
+    times: usize,
+    a: usize,
+    b: usize,
 ) -> bool {
-
-    let area_rect = x * y;
-    if objects == areas_volumes::GeometricalShapes::Square {
-        if areas_volumes::square_area(a) * times <= area_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalShapes::Circle {
-        if (areas_volumes::circle_area(a) * times as f64) as usize <= area_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalShapes::Rectangle {
-        if areas_volumes::rectangle_area(a,b) * times <= area_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalShapes::Triangle {
-        if (areas_volumes::triangle_area(a, b) * times as f64) as usize <= area_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
+    let container_area = rectangle_area(x, y);
+    let object_area = match objects {
+        GeometricalShapes::Square => square_area(a),
+        GeometricalShapes::Circle => circle_area(a) as usize,
+        GeometricalShapes::Rectangle => rectangle_area(a, b),
+        GeometricalShapes::Triangle => triangle_area(a, b) as usize,
+    };
+    container_area / object_area >= times
 }
 
 pub fn volume_fit(
-	x: usize,
-	y: usize,
-	z: usize,
-	objects: areas_volumes::GeometricalVolumes,
-	times: usize,
-	a: usize,
-	b: usize,
-	c: usize,
+    x: usize,
+    y: usize,
+    z: usize,
+    objects: GeometricalVolumes,
+    times: usize,
+    a: usize,
+    b: usize,
+    c: usize,
 ) -> bool {
-    let volume_rect = x * y * z;
-    if objects == areas_volumes::GeometricalVolumes::Cube {
-        if areas_volumes::cube_volume(a) * times <= volume_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalVolumes::Sphere {
-        if (areas_volumes::sphere_volume(a) * times as f64) as usize <= volume_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalVolumes::Cone {
-        if (areas_volumes::cone_volume(a, b) * times as f64) as usize <= volume_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalVolumes::Pyramid {
-        if (areas_volumes::triangular_pyramid_volume(a as f64, b) * times as f64 ) as usize<= volume_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else if objects == areas_volumes::GeometricalVolumes::Parallelepiped {
-        if areas_volumes::parallelepiped_volume(a, b, c) * times <= volume_rect {
-            return true;
-        } else {
-            return false;
-        }
-    } else {
-        return false;
-    }
+    let container_volume : usize = parallelepiped_volume(x, y, z);
+    let object_volume = match objects {
+        GeometricalVolumes::Cube => cube_volume(a),
+        GeometricalVolumes::Sphere => sphere_volume(a) as usize,
+        GeometricalVolumes::Cone => cone_volume(a, b) as usize,
+        GeometricalVolumes::Pyramid => triangular_pyramid_volume(triangle_area(a, b), c) as usize,
+        GeometricalVolumes::Parallelepiped => parallelepiped_volume(a, b, c),
+    };
+    container_volume / object_volume >= times
 }
-
