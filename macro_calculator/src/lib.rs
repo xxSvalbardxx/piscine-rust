@@ -1,6 +1,3 @@
-
-
-
 #[derive(Debug)]
 pub struct Food {
     //expected public fields
@@ -37,10 +34,3 @@ pub fn calculate_macros(foods: Vec<Food>) -> json::JsonValue {
 
     macro_json
 }
-
-
-/* //macro_json["cals"] += json::JsonValue::Array(vec![json::JsonValue::String(food.calories[0].clone()), json::JsonValue::String(food.calories[1].clone())]);
-         = json::JsonValue::Number(food.carbs.round().into());
-        macro_json["proteins"] = json::JsonValue::Number(food.proteins.round().into());
-        macro_json["fats"] += json::JsonValue::Number(food.fats.round().into());
-        // json::JsonValue::Number(food.fats.round().into()); is a type of f64 */
